@@ -58,18 +58,30 @@ class AESUtil {
         }
     }
 
+    // private static adjustKeySize(key: string): string {
+    //     const validKeySizes = [16, 24, 32];
+    //     const keyLength = key.length;
+    //
+    //     if (validKeySizes.includes(keyLength)) {
+    //         return key;
+    //     } else if (keyLength < 16) {
+    //         return key.padEnd(16, '0');
+    //     } else if (keyLength < 24) {
+    //         return key.padEnd(24, '0');
+    //     } else {
+    //         return key.substring(0, 32);
+    //     }
+    // }
+
     private static adjustKeySize(key: string): string {
-        const validKeySizes = [16, 24, 32];
         const keyLength = key.length;
 
-        if (validKeySizes.includes(keyLength)) {
+        if (keyLength === 16) {
             return key;
         } else if (keyLength < 16) {
             return key.padEnd(16, '0');
-        } else if (keyLength < 24) {
-            return key.padEnd(24, '0');
         } else {
-            return key.substring(0, 32);
+            return key.substring(0, 16);
         }
     }
 }
