@@ -17,8 +17,10 @@
           </template>
         </el-table-column>
         <el-table-column prop="device_name" label="设备名称"></el-table-column>
-        <el-table-column prop="device_id" label="设备ID"></el-table-column>
-        <el-table-column prop="session_id" label="会话ID"></el-table-column>
+        <el-table-column prop="device_id" label="设备ID" width="300"></el-table-column>
+        <el-table-column prop="log_count" label="日志条数" width="150"></el-table-column>
+        <el-table-column prop="last_active" label="最后活跃" width="200" :formatter="timeFormat"></el-table-column>
+        <el-table-column prop="session_id" label="会话ID" width="170"></el-table-column>
         <el-table-column label="操作" width="200">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="onlineLog(row)">实时日志</el-button>
@@ -167,6 +169,10 @@ const createTask = async () => {
 
 const onlineLog = (row: DeviceModel) => {
   router.push('/logList?type=online&id=' + row.session_id + '&title=' + row.device_name + '[实时日志]');
+};
+
+const timeFormat = (row: DeviceModel) => {
+  return CommonUtil.dateFormat(row.last_active, 'YYYY-MM-DD HH:mm:ss');
 };
 </script>
 

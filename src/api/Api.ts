@@ -157,6 +157,8 @@ export interface DeviceModel {
     device_type: number;
     device_name: string;
     device_id: string;
+    log_count: number;
+    last_active: number;
     session_id: string;
 }
 
